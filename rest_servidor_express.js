@@ -7,9 +7,8 @@ const app = express();
 const port = 5000;
 
 app.use(bodyParser.json());
-
 // Dados para testes
-let data = [
+let cadrastro = [
   { id: 1, nome: 'Item 1' },
   { id: 2, nome: 'Item 2' },
   { id: 3, nome: 'Item 3' },
@@ -19,6 +18,11 @@ let data = [
 app.get('/api/items', (req, res) => {
   res.json(data);
 });
+
+app.get('/plataforma', (req, res) => {
+  console.log(cadrastro);
+  res.json(cadrastro);
+})
 
 // Rota para obter um item por ID
 app.get('/api/items/:id', (req, res) => {
@@ -30,14 +34,21 @@ app.get('/api/items/:id', (req, res) => {
   res.json(item);
 });
 
-// Rota para criar um novo item
-app.post('/api/items', (req, res) => {
-  const newItem = req.body;
-  newItem.id = data.length + 1;
-  data.push(newItem); // Insere novo elemento na lista
-  console.log("mensagem: ", req.body);
-  console.log("id: ", req.body.id, "  nome: ", req.body.nome);
-  res.status(201).json(newItem);
+// Rota para criar um novo itemb 
+app.post('/plataforma', (req, res) => {
+  console.log('ID: ', req.body.id, ' - NOME: ', req.body.nome, ' - PEDIDO: ', req.body.pedido);
+  if (req.body.pedido.toUpperCase() == 'CADRASTRAR') {
+    const newItem = req.body;
+    newItem.id = cadrastro.length + 1;
+    console.log('cadrastrar: ', newItem);
+    cadrastro.push(newItem);
+    console.log(cadrastro);
+    res.status(201).json(newItem);
+  } else {
+    console.log("mensagem incorreta");
+    res.status(201).json("Mensagem incorreta");
+  }
+
 });
 
 // Rota para atualizar um item por ID

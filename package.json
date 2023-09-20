@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "rest_servidor_express.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon rest_servidor_express.js"
   },
   "author": "",
   "license": "ISC",
@@ -11,5 +12,8 @@
     "axios": "^1.5.0",
     "express": "^4.18.2"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
