@@ -9,9 +9,9 @@ const port = 5000;
 app.use(bodyParser.json());
 // Dados para testes
 let cadrastro = [
-  { id: 1, nome: 'Item 1' },
-  { id: 2, nome: 'Item 2' },
-  { id: 3, nome: 'Item 3' },
+  { id: 1, nome: 'Item 1', pedido: "cadrastrar" },
+  { id: 2, nome: 'Item 2', pedido: "alterar" },
+  { id: 3, nome: 'Item 3', pedido: "cadrastrar" },
 ];
 
 // Rota para obter todos os itens
@@ -62,6 +62,7 @@ app.put('/api/items/:id', (req, res) => {
   data[index] = { ...data[index], ...updatedItem };
   res.json(data[index]);
 });
+
 
 // Rota para excluir um item por ID
 app.delete('/api/items/:id', (req, res) => {
